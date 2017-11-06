@@ -6,7 +6,10 @@
 
 import React, { Component } from 'react';
 import {Header} from './components/header';
-import {Item1} from './components/subItem'
+import Item1 from './components/subItem/item1';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducer from './redux/reducer';
 import {
   Platform,
   StyleSheet,
@@ -18,6 +21,7 @@ import {
 export default class App extends Component<{}> {
   render() {
     return (
+      <Provider store ={createStore(reducer)}>
       <View >
         <Header/>
         <Item1 
@@ -37,6 +41,7 @@ export default class App extends Component<{}> {
           title='Quan Sat'
           subTitle='Theo doi lien tuc'/>  
       </View>
+      </Provider>
     );
   }
 }

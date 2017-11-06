@@ -1,4 +1,9 @@
 {
+	"rnpm": {
+		"assets": [
+			"./assets/fonts/"
+		]
+	},
 	"name": "AppNew",
 	"version": "0.0.1",
 	"private": true,
@@ -12,6 +17,7 @@
 		"react-native-linear-gradient": "^2.3.0",
 		"react-native-mqtt": "0.1.0-beta4",
 		"react-native-paho-mqtt": "^0.1.1",
+		"react-native-spinkit": "^1.1.1",
 		"react-redux": "^5.0.6",
 		"redux": "^3.7.2"
 	},

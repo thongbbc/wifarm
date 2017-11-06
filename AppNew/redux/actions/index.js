@@ -1,6 +1,12 @@
-hello =  () => {
-    return {
-        type:'Init'
+loading =  (check) => {
+    if (check)
+        return {
+            type:'Loading'
+        }
+    else {
+       return {
+            type:'UnLoading'
+        } 
     }
 }
 disconnect = () => {
@@ -8,4 +14,10 @@ disconnect = () => {
         type:'Disconnect'
     }
 }
-export {hello,disconnect}
+changeAppState = (appState) => {
+    return {
+        type:'ChangeAppState',
+        value:appState
+    }
+}
+export {loading,disconnect,changeAppState}

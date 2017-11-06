@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {Text,View,Dimensions} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-class SubItem1 extends Component {
+class SubItem extends Component {
     contructor(props) {
 
     }
@@ -36,4 +36,4 @@ const style = {
     },
 }
 
-export {SubItem1}
+export {SubItem}

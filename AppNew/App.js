@@ -5,47 +5,55 @@
  */
 
 import React, { Component } from 'react';
+//Component
 import {Header} from './components/header';
-import Item1 from './components/subItem/item1';
+import Item from './components/subItem/item';
+import Main from './components/main'
+//Redux
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducer from './redux/reducer';
+//Method using MQTT
+import {initMQTT,sendGetAllData} from './callBackMQTT'
+import {Client, Message} from 'react-native-paho-mqtt';
+
+
 import {
   Platform,
   StyleSheet,
-  Text,
+  Text,AppState,
   View
 } from 'react-native';
 
 
 export default class App extends Component<{}> {
+  
   render() {
     return (
       <Provider store ={createStore(reducer)}>
-      <View >
-        <Header/>
-        <Item1 
-          check={true}
-          title='Do Am Hien Tai'
-          subTitle='Rat Tot'/>
-        <Item1 
-          check={false}
-          title='Lam Mat Vuon Nam'
-          subTitle='Khong Nen Tuoi'/>
-        <Item1 
-          check={true}
-          title='Lich Su'
-          subTitle='Da Tuoi Cach Day 25 Phut'/>
-        <Item1 
-          check={false}
-          title='Quan Sat'
-          subTitle='Theo doi lien tuc'/>  
-      </View>
+        <Main >
+          <Header/>
+          <Item
+            check={true}
+            title='Do Am Hien Tai'
+            subTitle='Rat Tot'/>
+          <Item
+            check={false}
+            title='Lam Mat Vuon Nam'
+            subTitle='Khong Nen Tuoi'/>
+          <Item
+            check={true}
+            title='Lich Su'
+            subTitle='Da Tuoi Cach Day 25 Phut'/>
+          <Item
+            check={false}
+            title='Quan Sat'
+            subTitle='Theo doi lien tuc'/>  
+        </Main>
       </Provider>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

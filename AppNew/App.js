@@ -41,15 +41,17 @@ export default class App extends Component<{}> {
   constructor(props){
     super(props)
     this.stateDrawer = false
-  }
-  medthod() {
-    alert('hello');
+    this.width = Dimensions.get('window').width,
+    this.height = Dimensions.get('window').height
   }
   render() {
     
     return (
       <Provider store ={createStore(reducer)}>
-        <View style = {{flex:1,backgroundColor:'#136a8a'}}>
+      <View style={{flex:1}}>
+        <LinearGradient colors={['#136a8a','#136a8a','#00bf8f']}
+        start={{x: 0.0, y: 0}} end={{x: 1, y: 0}} style = {{flex:1}}>
+        </LinearGradient>
         <Main >
           <Header method={this.method}/>
           <Item
@@ -69,7 +71,8 @@ export default class App extends Component<{}> {
             title='Quan Sat'
             subTitle='Theo doi lien tuc'/>  
         </Main>
-        </View>
+
+      </View>
       </Provider>
     );
   }

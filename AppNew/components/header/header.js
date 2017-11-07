@@ -26,14 +26,16 @@ class Header extends Component {
                     </View>
                 </TouchableWithoutFeedback>
             </View>
-            <View style={{paddingTop:10,width:width-40,alignItems:'center',paddingBottom:20}}>
+            <View style={{paddingTop:10,alignItems:'flex-start'}}>
                 <Image
                     style={imageHeader}
                     resizeMode='cover'
                     source={require('../../image/wifiIcon.png')}
                 />
                 <Text allowFontScaling={false} style={titleText}>inFarm</Text>
-                <Text allowFontScaling={false} style={subTitleText}>connect  with  nature</Text>
+            </View>
+            <View style = {{paddingBottom:20,width:this.width,alignItems:'center'}}>
+                 <Text allowFontScaling={false} style={subTitleText}>connect  with  nature</Text>
             </View>
         </View>
         </LinearGradient>
@@ -55,7 +57,7 @@ const style = {
     },
     imageHeader: {
         position:'absolute',top:20,
-        height:50,width:50,left:25
+        height:50,width:50,left:4
     },
     banner:{
         height:40,
@@ -72,8 +74,9 @@ const style = {
         backgroundColor:'transparent'
     },
     subTitleText: {
-        backgroundColor:'transparent',
         color:'white',
+        backgroundColor:'transparent',
+        textAlign:'center',
         fontWeight:'300',
         fontSize:20,top:-5
 

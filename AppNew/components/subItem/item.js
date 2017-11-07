@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Text,View,Dimensions} from 'react-native';
 import {SubItem} from './subItem'
-
+import {text} from '../../extensionHelper'
 export default class Item extends Component {
     constructor(props) {
         super(props)
@@ -15,10 +15,10 @@ export default class Item extends Component {
         return(
             <SubItem color={this.props.check?['#00bf8f','#136a8a']:['#136a8a','#00bf8f']}>
                 <View style={item}>
-                    <Text onPress={()=>{
+                    <Text allowFontScaling={false} onPress={()=>{
                         }} style={textItem}>{this.props.title}</Text>
                     <View style={underLine}></View>
-                    <Text style={subTextItem}>{this.props.subTitle}</Text>
+                    <Text allowFontScaling={false} style={subTextItem}>{this.props.subTitle}</Text>
                 </View>
                 {this.props.children}
             </SubItem>
@@ -38,7 +38,8 @@ const style = {
         paddingRight:5,
         backgroundColor:'transparent',
         color:'white',
-        fontSize:15,
+        fontSize:text.sizeTitle,
+        fontFamily:text.fontFamily,
         fontWeight:'400',
         width:width/2 - 10,
     }, 
@@ -50,7 +51,8 @@ const style = {
     subTextItem: {
         color:'white',
         paddingLeft:5,
-        fontSize:10,
+        fontFamily:text.fontFamily,
+        fontSize:text.sizeSubTitle,
         backgroundColor:'transparent'
     }
 }

@@ -20,4 +20,16 @@ changeAppState = (appState) => {
         value:appState
     }
 }
-export {loading,disconnect,changeAppState}
+onOrOffAnimating = (state) => {
+    if (state == true)
+        return {
+            type : 'on',
+            value:true
+        } 
+    else 
+        return {
+            type : 'off',
+            value:false
+        }
+}
+export {loading,disconnect,changeAppState,onOrOffAnimating}

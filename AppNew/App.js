@@ -6,7 +6,8 @@
 
 import React, { Component } from 'react';
 //Component
-import {Header} from './components/header';
+import {StackNavigator, DrawerNavigator,DrawerItems} from 'react-navigation'
+import Header from './components/header/header';
 import Item from './components/subItem/item';
 import Main from './components/main'
 //Redux
@@ -16,23 +17,41 @@ import reducer from './redux/reducer';
 //Method using MQTT
 import {initMQTT,sendGetAllData} from './callBackMQTT'
 import {Client, Message} from 'react-native-paho-mqtt';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 import {
-  Platform,
+  Platform,Image,ScrollView,
   StyleSheet,
-  Text,AppState,
-  View
+  Text,AppState,Dimensions,
+  View,
+  TouchableOpacity
 } from 'react-native';
 
 
 export default class App extends Component<{}> {
-  
+  // static navigationOptions = {
+  //   drawerLabel: 'MainScreen',drawerLockMode: 'locked-closed',
+  //   drawerIcon: ({tintColor}) => (
+  //     <Icon color='white' 
+  //       size={15} name={'desktop'} />
+  //   )
+  // };
+  constructor(props){
+    super(props)
+    this.stateDrawer = false
+  }
+  medthod() {
+    alert('hello');
+  }
   render() {
+    
     return (
       <Provider store ={createStore(reducer)}>
+        <View style = {{flex:1,backgroundColor:'#136a8a'}}>
         <Main >
-          <Header/>
+          <Header method={this.method}/>
           <Item
             check={true}
             title='Do Am Hien Tai'
@@ -50,6 +69,7 @@ export default class App extends Component<{}> {
             title='Quan Sat'
             subTitle='Theo doi lien tuc'/>  
         </Main>
+        </View>
       </Provider>
     );
   }
@@ -62,3 +82,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   }
 });
+class ManageDeviceScreen extends Component<{}> {
+  static navigationOptions = {
+    drawerLabel: 'ManageDevice',
+    drawerIcon: ({tintColor}) => 
+    (<Icon color='white' 
+        size={15} name={'cogs'} />)
+  };
+}
+// export default App = DrawerNavigator({
+//   MainScreen: {
+//     screen: MainScreen
+//   },
+//   ManageDevice: {
+//     screen: ManageDeviceScreen
+//   }
+// }, {
+//   initialRouteName: 'MainScreen',
+//   drawerPosition: 'left',drawerWidth:Dimensions.get('window').width,
+//   drawerBackgroundColor: 'transparent',
+//   contentComponent: props => 
+//       <View style = {{backgroundColor:'transparent',width:Dimensions.get('window').width,
+//           height:Dimensions.get('window').height,flexDirection:'row'}}>
+//         <View 
+//           style = {{backgroundColor:'transparent',
+//           width:Dimensions.get('window').width/2,
+//           height:Dimensions.get('window').height}} >
+//           <DrawerItems activeTintColor='#fff' activeBackgroundColor='rgba(0, 0, 0, .4)' labelStyle={{color: '#ffffff',fontSize:10}} {...props} />
+//         </View>
+//         <TouchableOpacity onPress = {()=>{
+//             props.navigation.navigate('DrawerToggle')
+//           }}>
+//         <View
+//         style = {{
+//           backgroundColor:'transparent',
+//           width:Dimensions.get('window').width/2,
+//           height:Dimensions.get('window').height}}>
+//         </View>
+//         </TouchableOpacity>
+//       </View>
+// })

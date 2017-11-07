@@ -1,28 +1,44 @@
-import React from 'react';
-import {Text,View,Dimensions,Image} from 'react-native';
+import React,{Component} from 'react';
+import {Text,View,Dimensions,Image,TouchableWithoutFeedback,TouchableHighlight} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-const Header = () => {
-   const width = Dimensions.get('window').width;
-
-    const {titleText,header,banner,imageHeader,subTitleText} = style;
+import Icon from 'react-native-vector-icons/FontAwesome';
+import reducer from '../../redux/reducer';
+import {connect} from 'react-redux'
+import * as action from '../../redux/actions'
+class Header extends Component {
+    constructor(props){
+        super(props)
+    }
+    render(){
+        const width = Dimensions.get('window').width;
+        const {titleText,header,banner,imageHeader,subTitleText} = style;
     return(
         <LinearGradient colors={['#136a8a','#00bf8f']}
         start={{x: 0.0, y: 0}} end={{x: 1, y: 0}}
          style={header}>
         <View style={header}>
-            <View style={banner}></View>
+            <View style={banner}>
+                <TouchableWithoutFeedback style={{height:30,width:30}} onPress={()=>{
+                        this.props.onOrOffAnimating(!this.props.animating)
+                    }}>
+                    <View>
+                        <Icon color='white' style = {{left:5,height:30,width:30}} size={25} name={'bars'} />
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
             <View style={{paddingTop:10,width:width-40,alignItems:'center',paddingBottom:20}}>
                 <Image
                     style={imageHeader}
                     resizeMode='cover'
                     source={require('../../image/wifiIcon.png')}
                 />
-                <Text style={titleText}>inFarm</Text>
-                <Text style={subTitleText}>connect  with  nature</Text>
+                <Text allowFontScaling={false} style={titleText}>inFarm</Text>
+                <Text allowFontScaling={false} style={subTitleText}>connect  with  nature</Text>
             </View>
         </View>
         </LinearGradient>
     )
+    }
 }
 
 
@@ -32,24 +48,24 @@ const height = Dimensions.get('window').height;
 const style = {
     header:{
         width,
-        height:height/3,
+        height:height/3 + 20,
         paddingTop:10,
         alignItems:'center',
         justifyContent:'center',
     },
     imageHeader: {
-        position:'absolute',top:10,
+        position:'absolute',top:20,
         height:50,width:50,left:25
     },
     banner:{
-        height:30,
-        width,
-        backgroundColor:'black',
+        height:40,
+        width,justifyContent:'center',top:20,paddingLeft:5,
+        backgroundColor:'transparent',
     },
     titleText:{
         fontSize:80,
         color:'white',
-        paddingTop:20,
+        paddingTop:30,
         textDecorationLine: "underline",
         textDecorationStyle: "solid",
         textDecorationColor: "white",
@@ -64,4 +80,11 @@ const style = {
     }
     
 }
-export {Header}
+const mapStateToProps = (state) => {
+    return {
+        visibleLoadingView: state.visibleLoadingView,
+        appState: state.appState,
+        animating:state.animating
+    }
+};
+export default connect (mapStateToProps,action)(Header);

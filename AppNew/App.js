@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 //Component
 import {StackNavigator, DrawerNavigator,DrawerItems} from 'react-navigation'
-import Header from './components/header/header';
+import SuperHeader from './components/header/header';
 import Item from './components/subItem/item';
 import Main from './components/main'
 //Redux
@@ -19,7 +19,7 @@ import {initMQTT,sendGetAllData} from './callBackMQTT'
 import {Client, Message} from 'react-native-paho-mqtt';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {width,height} from './extensionHelper'
 
 import {
   Platform,Image,ScrollView,
@@ -49,10 +49,10 @@ class FullScreen extends Component<{}> {
     return (
       <View style={{flex:1}}>
         <LinearGradient colors={['#136a8a','#136a8a','#00bf8f']}
-        start={{x: 0.0, y: 0}} end={{x: 1, y: 0}} style = {{flex:1}}>
+        start={{x: 0.0, y: 0}} end={{x: 1, y: 0}} style = {{width,height:height+200}}>
         </LinearGradient>
         <Main >
-          <Header method={this.method}/>
+          <SuperHeader/>
           <Item
             check={true}
             title='Do Am Hien Tai'
@@ -83,6 +83,12 @@ class FullScreen extends Component<{}> {
             title='Quan Sat'
             subTitle='Theo doi lien tuc'>
             <Icon color='white' style = {{right:10,height:30,width:35,backgroundColor:'transparent',alignItems:'center',justifyContent:'center'}} size={30} name={'video-camera'} />  
+          </Item>
+          <Item
+            check={true}
+            title='TIP'
+            subTitle='TRICK'>
+            <Icon color='white' style = {{right:10,height:30,width:35,backgroundColor:'transparent',alignItems:'center',justifyContent:'center'}} size={30} name={'coffee'} />  
           </Item>
         </Main>
       </View>

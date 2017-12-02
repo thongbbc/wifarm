@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Text,View,Dimensions} from 'react-native';
 import {SubItem} from './subItem'
-import {text} from '../../extensionHelper'
+import {text,width,height} from '../../extensionHelper'
 export default class Item extends Component {
     constructor(props) {
         super(props)
@@ -26,8 +26,6 @@ export default class Item extends Component {
     }
 }
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 const style = {
     item: {
         alignItems:'flex-start',
@@ -51,6 +49,7 @@ const style = {
     subTextItem: {
         color:'white',
         paddingLeft:5,
+        top:2,
         fontFamily:text.fontFamily,
         fontSize:text.sizeSubTitle,
         backgroundColor:'transparent'

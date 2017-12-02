@@ -135,18 +135,18 @@ class Main extends Component {
                     <Text style = {{padding:10,fontSize:15,color:'white',backgroundColor:'transparent'}}>Setting</Text>
                     <Text style = {{padding:10,fontSize:15,color:'white',backgroundColor:'transparent'}}>About</Text>
                 </View>
-            <Animated.View style = {{
-                transform: [
-                    { perspective: this.animationMain1 },
-                    { translateX: animationMain22 },
-                    { rotateY: animationMain33},
-                ]
-            }}>
-                {this.props.children}
-                {visibleLoadingView==true?renderLoadingView(this.width,this.height,visibleLoadingView,
-                    true):null}
-                {this.renderViewOffAnimating(this.props.animating)}
-            </Animated.View>
+                <Animated.View style = {{
+                    transform: [
+                        { perspective: this.animationMain1 },
+                        { translateX: animationMain22 },
+                        { rotateY: animationMain33},
+                    ],marginTop:0
+                }}>
+                    {this.props.children}
+                    {visibleLoadingView==true?renderLoadingView(this.width,this.height,visibleLoadingView,
+                        true):null}
+                    {this.renderViewOffAnimating(this.props.animating)}
+                </Animated.View>
             </View>
         )
     }

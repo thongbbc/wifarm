@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Text,View,Dimensions} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {height,width} from '../../extensionHelper'
 class SubItem extends Component {
     contructor(props) {
 
@@ -9,7 +9,7 @@ class SubItem extends Component {
     render() {
         const {header} = style
         return(
-            <LinearGradient colors={this.props.color}
+            <LinearGradient colors={this.props.color} style = {{height:(height - (height/3 + 20))/5,}}
             start={{x: 0.0, y: 0}} end={{x: 1, y: 0}}>
                 <View style={header}>
                     {this.props.children}
@@ -18,12 +18,9 @@ class SubItem extends Component {
         )
     }
 }
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 const style = {
     header:{
-        width,
-        height:70,
+        width,flex:1,
         paddingLeft:10,paddingRight:10,
         paddingTop:5,
         paddingBottom:5,

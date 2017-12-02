@@ -13,7 +13,7 @@ export default class Item extends Component {
     render() {
         const {header,textItem,item,underLine,subTextItem} = style
         return(
-            <SubItem color={this.props.check?['#00bf8f','#136a8a']:['#136a8a','#00bf8f']}>
+            <SubItem syle = {{flexDirection:'row'}} color={this.props.check?['#00bf8f','#136a8a']:['#136a8a','#00bf8f']}>
                 <View style={item}>
                     <Text allowFontScaling={false} onPress={()=>{
                         }} style={textItem}>{this.props.title}</Text>

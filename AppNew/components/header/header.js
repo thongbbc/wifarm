@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Text,View,Dimensions,Image,TouchableWithoutFeedback,TouchableHighlight} from 'react-native';
+import {Text,View,Dimensions,Image,TouchableOpacity,TouchableHighlight} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import reducer from '../../redux/reducer';
@@ -18,13 +18,20 @@ class Header extends Component {
          style={header}>
         <View style={header}>
             <View style={banner}>
-                <TouchableWithoutFeedback style={{height:30,width:30}} onPress={()=>{
+                <TouchableOpacity style={{height:30,width:30}} onPress={()=>{
                         this.props.onOrOffAnimating(!this.props.animating)
                     }}>
                     <View>
                         <Icon color='white' style = {{left:5,height:30,width:30}} size={25} name={'bars'} />
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
+                <TouchableOpacity style={{height:30,width:30}} onPress={()=>{
+                        this.props.onOrOffAnimating(!this.props.animating)
+                    }}>
+                    <View>
+                        <Icon color='white' style = {{right:5,height:30,width:30}} size={25} name={'cog'} />
+                    </View>
+                </TouchableOpacity>
             </View>
             <View style={{paddingTop:10,alignItems:'flex-start'}}>
                 <Image
@@ -60,8 +67,8 @@ const style = {
         height:50,width:50,left:4
     },
     banner:{
-        height:40,
-        width,justifyContent:'center',top:20,paddingLeft:5,
+        height:40,flexDirection:'row',width,alignItems:'center',
+        width,justifyContent:'space-between',top:20,paddingLeft:5,paddingRight:5,
         backgroundColor:'transparent',
     },
     titleText:{

@@ -23,14 +23,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
   Platform,Image,ScrollView,
-  StyleSheet,
+  StyleSheet,Switch,
   Text,AppState,Dimensions,
   View,
   TouchableOpacity
 } from 'react-native';
 
 
-export default class App extends Component<{}> {
+class FullScreen extends Component<{}> {
   // static navigationOptions = {
   //   drawerLabel: 'MainScreen',drawerLockMode: 'locked-closed',
   //   drawerIcon: ({tintColor}) => (
@@ -47,7 +47,6 @@ export default class App extends Component<{}> {
   render() {
     
     return (
-      <Provider store ={createStore(reducer)}>
       <View style={{flex:1}}>
         <LinearGradient colors={['#136a8a','#136a8a','#00bf8f']}
         start={{x: 0.0, y: 0}} end={{x: 1, y: 0}} style = {{flex:1}}>
@@ -57,24 +56,47 @@ export default class App extends Component<{}> {
           <Item
             check={true}
             title='Do Am Hien Tai'
-            subTitle='Rat Tot'/>
+            subTitle='Rat Tot'>
+            <Text style = {{color:'white',backgroundColor:'transparent',fontSize:25,right:-10}}>80%</Text>
+            <Icon color='white' style = {{right:5,height:35,width:35,backgroundColor:'transparent'}} size={35} name={'tint'} />
+          </Item>
           <Item
             check={false}
             title='Lam Mat Vuon Nam'
-            subTitle='Khong Nen Tuoi'/>
+            subTitle='Khong Nen Tuoi'>
+            <View style = {{right:10}}>
+              <Switch tintColor = {'white'} color={'white'} />
+              <Text style = {{top:5,color:'white',backgroundColor:'transparent',textAlign:'center'}}>Off</Text>
+            </View>
+          </Item>
           <Item
             check={true}
             title='Lich Su'
-            subTitle='Da Tuoi Cach Day 25 Phut'/>
+            subTitle='Da Tuoi Cach Day 25 Phut'>
+            <View style = {{right:10,alignItems:'center'}}>
+              <Icon color='white' style = {{height:30,width:35,backgroundColor:'transparent',alignItems:'center',justifyContent:'center'}} size={30} name={'area-chart'} />
+              <Text style = {{top:5,color:'white',backgroundColor:'transparent',textAlign:'center',fontSize:10}}>Kiểm tra</Text>
+            </View>
+          </Item>
           <Item
             check={false}
             title='Quan Sat'
-            subTitle='Theo doi lien tuc'/>  
+            subTitle='Theo doi lien tuc'>
+            <Icon color='white' style = {{right:10,height:30,width:35,backgroundColor:'transparent',alignItems:'center',justifyContent:'center'}} size={30} name={'video-camera'} />  
+          </Item>
         </Main>
-
       </View>
-      </Provider>
     );
+  }
+}
+
+export default class App extends Component {
+  render() {
+    return(
+      <Provider store ={createStore(reducer)}>
+        <FullScreen/>
+      </Provider>
+    )
   }
 }
 const styles = StyleSheet.create({

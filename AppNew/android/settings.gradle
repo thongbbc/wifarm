@@ -1,4 +1,6 @@
 rootProject.name = 'AppNew'
+include ':react-native-network-info'
+project(':react-native-network-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-network-info/android')
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
 include ':react-native-spinkit'
@@ -9,3 +11,5 @@ include ':react-native-linear-gradient'
 project(':react-native-linear-gradient').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-linear-gradient/android')
 
 include ':app'
+include ':react-native-smartconfig'
+project(':react-native-smartconfig').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-smartconfig/android')

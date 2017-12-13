@@ -12,7 +12,7 @@ import {
   Platform,Animated,
   StyleSheet,Easing,
   Text,AppState,
-  View,Dimensions,TouchableWithoutFeedback
+  View,Dimensions,TouchableWithoutFeedback, TouchableOpacity
 } from 'react-native';
 
 
@@ -26,60 +26,7 @@ class Main extends Component {
         this.width = Dimensions.get('window').width;
         this.height = Dimensions.get('window').height; 
     };
-    componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
-        this.reconnect();
-    }
-    componentWillUnmount() {
-        AppState.removeEventListener('change', this._handleAppStateChange);
-    }
-    reconnect() {
-        if (!this.client)
-        {
-            this.client = initMQTT();
-            this._callBackReceiver();
-        } else {
-            this.client = initMQTT();
-            this._callBackReceiver();
-        }
-        this.props.loading(true)
-    }
     
-    _handleAppStateChange = (nextAppState) => {
-        if (this.props.appState.match(/inactive|background/) && nextAppState === 'active') {
-            console.log('App has come to the foreground!')
-        }
-        this.props.changeAppState(nextAppState);
-    }
-
-    _callBackReceiver() {
-        this.client.on('connectionLost', (responseObject) => {
-        if (responseObject.errorCode !== 0) {
-            console.log(responseObject.errorMessage);
-        }
-        });
-        this.client.on('messageReceived', (message) => {
-            console.log(message.payloadString);
-        });
-
-        // connect the client
-        this.client.connect()
-        .then(() => {
-            // Once a connection has been made, make a subscription and send a message.
-            console.log('onConnect');
-            return this.client.subscribe('Thong');
-        })
-        .then(() => {
-            sendGetAllData(this.client)
-            this.props.loading(false)        
-        })
-        .catch((responseObject) => {
-            if (responseObject.errorCode !== 0) {
-                console.log('onConnectionLost:' + responseObject.errorMessage);
-                this.reconnect();
-            }
-        });
-    }
     createAnimation = (value, duration,toValue) =>{
         return Animated.timing(
             value,
@@ -132,8 +79,14 @@ class Main extends Component {
             <View style = {{position:'absolute',justifyContent:'center'}}>
                 <View 
                 style = {{alignItems:'center',position:'absolute',width:this.width/2,height:this.height/2}}>
-                    <Text style = {{padding:10,fontSize:15,color:'white',backgroundColor:'transparent'}}>Setting</Text>
-                    <Text style = {{padding:10,fontSize:15,color:'white',backgroundColor:'transparent'}}>About</Text>
+                    <TouchableOpacity onPress = {()=>{
+                         this.props.navigation.navigate('ManageDeviceScreen', {name: 'Lucy'})
+                    }}>
+                        <View>
+                            <Text style = {{padding:10,fontSize:15,color:'white',backgroundColor:'transparent'}}>Setting</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View><Text style = {{padding:10,fontSize:15,color:'white',backgroundColor:'transparent'}}>About</Text></View>
                 </View>
                 <Animated.View style = {{
                     transform: [

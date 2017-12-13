@@ -12,7 +12,7 @@ class Header extends Component {
     render(){
         const width = Dimensions.get('window').width;
         const {titleText,header,banner,imageHeader,subTitleText} = style;
-    return(
+    return (
         <LinearGradient colors={['#136a8a','#00bf8f']}
         start={{x: 0.0, y: 0}} end={{x: 1, y: 0}}
          style={header}>
@@ -26,7 +26,7 @@ class Header extends Component {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={{height:30,width:30}} onPress={()=>{
-                        this.props.swipe.scrollBy(1)
+                     this.props.swipe.scrollBy(1)
                     }}>
                     <View>
                         <Icon color='white' style = {{right:0,height:30,width:30}} size={25} name={'cog'} />

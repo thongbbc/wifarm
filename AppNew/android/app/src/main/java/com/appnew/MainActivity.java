@@ -1,6 +1,7 @@
 package com.appnew;
 
 import com.facebook.react.ReactActivity;
+import com.tuanpm.RCTSmartconfig.RCTSmartconfigPackage;
 
 public class MainActivity extends ReactActivity {
 
